@@ -13,6 +13,14 @@
   <:item title="Description"><%= @product.description %></:item>
   <:item title="Price"><%= @product.price %></:item>
   <:item title="Views"><%= @product.views %></:item>
+
+  <%= if @product.categories do %>
+    <%= for cat <- @product.categories do %>
+      <li><%= Map.get(cat, :name) || Map.get(cat, :title) || "No title/name found" %></li>
+    <% end %>
+  <% else %>
+    <li>No categories found</li>
+  <% end %>
 </.list>
 
 <.back navigate={~p"/products"}>Back to products</.back>
